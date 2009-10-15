@@ -27,7 +27,7 @@ module CloudfileAsset
           start = Time.new
           puts "uploading file - #{file}"
         end
-        object = container.create_object(file.split(@dir_path).last, true)
+        object = container.create_object(file.split(@dir_path).last, false)
         object.load_from_filename(file)
         if loud
           now = Time.new
