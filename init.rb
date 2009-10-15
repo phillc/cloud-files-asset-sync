@@ -1,1 +1,1 @@
-# Include hook code here
+require 'cloudfile_asset'

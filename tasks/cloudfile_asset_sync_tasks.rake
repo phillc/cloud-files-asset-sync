@@ -1,4 +1,4 @@
-# desc "Explaining what the task does"
-# task :cloudfile_asset_sync do
-#   # Task goes here
-# end
+desc "Sync public folder with cloud files"
+task :cf_asset_host => :environment do
+  CloudfileAsset::sync_public
+end
