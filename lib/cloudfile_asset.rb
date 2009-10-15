@@ -1,5 +1,5 @@
 require 'cloudfiles'
-require 'YAML'
+require 'yaml'
 
 module CloudfileAsset
   class << self
