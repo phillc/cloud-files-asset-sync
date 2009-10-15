@@ -1,5 +1,6 @@
 CloudfileAssetSync
 ==================
+This plugin is intended to allow for easy movement of assets (rails public folder) to Rackspace's cloud files.
 
 Dependencies
 ==================
@@ -25,7 +26,7 @@ cloud_files.yml:
       assets_container: -- container name of where your public assets will go --
     
 Usage:
-    rake cf_asset_host
+  rake cf_asset_host
     
 Will publish capistrano recipe when I finish it.
 
