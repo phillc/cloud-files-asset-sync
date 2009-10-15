@@ -25,7 +25,7 @@ module CloudfileAsset
         puts file if loud
         object = container.create_object(file.split(@dir_path).last, true)
         object.write(file)
-        sleep wait if not wait nil?
+        sleep wait.to_i if not wait.nil?
       end
     end
   end
