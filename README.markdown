@@ -5,12 +5,12 @@ Dependencies
 ==================
 
 Requires rackspace cloudfiles gem
-http://github.com/rackspace/ruby-cloudfiles/tree
+[http://github.com/rackspace/ruby-cloudfiles/tree](http://github.com/rackspace/ruby-cloudfiles/tree)
 
 Usage:
 ==================
 In your RAILS_ROOT/config folder, create a cloud_files.yml .
-The config file is compatible with Minter's paperclip fork for cloud files http://github.com/minter/paperclip
+The config file is compatible with Minter's paperclip fork for cloud files [http://github.com/minter/paperclip](http://github.com/minter/paperclip)
 
 cloud_files.yml:
 
@@ -30,4 +30,4 @@ Usage:
 Will publish capistrano recipe when I finish it.
 
 
-Copyright (c) 2009 phillc, released under the MIT license
+Copyright (c) 2009 [phillc](http://kapsh.com), released under the MIT license
