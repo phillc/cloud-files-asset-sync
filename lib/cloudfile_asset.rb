@@ -22,9 +22,16 @@ module CloudfileAsset
       end
        
       files.each do |file|
-        puts file if loud
+        if loud
+          start = Time.new
+          puts "uplading file - #{file}"
+        end
         object = container.create_object(file.split(@dir_path).last, true)
         object.write(file)
+        if loud
+          diff = Time.new - start
+          puts "done uploading file - #{file} - #{diff} sec"
+        end
         sleep wait.to_i if not wait.nil?
       end
     end
