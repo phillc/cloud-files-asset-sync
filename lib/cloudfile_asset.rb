@@ -20,20 +20,24 @@ module CloudfileAsset
           false
         end
       end
-       
+      
+      begin_time = Time.new
       files.each do |file|
         if loud
           start = Time.new
-          puts "uplading file - #{file}"
+          puts "uploading file - #{file}"
         end
         object = container.create_object(file.split(@dir_path).last, true)
-        object.write(file)
+        object.load_from_filename(file)
         if loud
-          diff = Time.new - start
-          puts "done uploading file - #{file} - #{diff} sec"
+          now = Time.new
+          diff =  now - start
+          total = now - begin_time
+          puts "done uploading file - #{file} - #{diff} sec, #{total}"
         end
         sleep wait.to_i if not wait.nil?
       end
+      puts "Done uploading"
     end
   end
 end
