@@ -3,7 +3,7 @@ require 'yaml'
 
 module CloudfileAsset
   class << self
-    def sync_public
+    def sync_public(loud=false)
       cloud_config = YAML.load_file("#{RAILS_ROOT}/config/cloud_files.yml")['production'].symbolize_keys
       
       cf = CloudFiles::Connection.new(cloud_config[:username], cloud_config[:api_key])
@@ -22,6 +22,7 @@ module CloudfileAsset
       end
        
       files.each do |file|
+        puts file if loud
         object = container.create_object(file.split(@dir_path).last, true)
         object.write(file)
       end
