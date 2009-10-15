@@ -26,9 +26,12 @@ cloud_files.yml:
       assets_container: -- container name of where your public assets will go --
     
 Usage:
-  rake cf_asset_host
+    rake cf_asset_host
     
-Will publish capistrano recipe when I finish it.
+TODO:
+================
+- Capistrano Recipie
+- Delete files that no longer exist
 
 
 Copyright (c) 2009 [phillc](http://kapsh.com), released under the MIT license
