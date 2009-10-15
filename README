@@ -1,13 +1,33 @@
 CloudfileAssetSync
 ==================
 
-Introduction goes here.
+Dependencies
+==================
+
+Requires rackspace cloudfiles gem
+http://github.com/rackspace/ruby-cloudfiles/tree
+
+Usage:
+==================
+In your RAILS_ROOT/config folder, create a cloud_files.yml .
+The config file is compatible with Minter's paperclip fork for cloud files http://github.com/minter/paperclip
+
+cloud_files.yml:
+
+    development:
+      username: -- username --
+      api_key: -- api_key --
+      container: -- container -- # for paperclip
+    production:
+      username: -- username --
+      api_key: -- api_key --
+      container: -- container -- # for paperclip
+      assets_container: -- container name of where your public assets will go --
+    
+Usage:
+    rake cf_asset_host
+    
+Will publish capistrano recipe when I finish it.
 
 
-Example
-=======
-
-Example goes here.
-
-
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+Copyright (c) 2009 phillc, released under the MIT license
