@@ -3,11 +3,12 @@ module CloudfileAsset
     class << self
       def public(loud=false, wait=nil)
         container = CloudfileAsset::Container.new
-        local_files = CloudfileAsset::Local.public_files
+        new_files = container.new_files
+        modified_files = container.modified_files
         deleted_files = container.deleted_files
         begin_time = Time.new
 
-        local_files.each do |file|
+        (new_files + modified_files).each do |file|
           if loud
             start = Time.new
             puts "uploading file - #{file}"
@@ -24,12 +25,20 @@ module CloudfileAsset
 
           sleep wait.to_i if not wait.nil?
         end
-        puts "Done uploading"
+        puts "Done uploading" if loud
         
         deleted_files.each do |file|
           container.delete_file(file)
         end
-        puts "Done cleaning up"
+        puts "Done cleaning up" if loud
+      end
+      
+      def delete_all(loud=false)
+        container = CloudfileAsset::Container.new
+        container.remote_files.each do |file|
+          container.delete_file(file)
+        end
+        puts "Done deleteing all remote files" if loud
       end
     end
   end

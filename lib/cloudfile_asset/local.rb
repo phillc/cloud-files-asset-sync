@@ -16,6 +16,9 @@ module CloudfileAsset
       def make_relative(filename)
         filename.split(CloudfileAsset::LOCAL_PUBLIC_PATH).last
       end
+      def make_absolute(filename)
+        [CloudfileAsset::LOCAL_PUBLIC_PATH, filename].join
+      end
     end
   end
 end
