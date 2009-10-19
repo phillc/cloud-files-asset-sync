@@ -1,1 +1,1 @@
-require 'cloudfile_asset'
+require File.join(File.dirname(__FILE__), 'lib', 'cloudfile_asset')

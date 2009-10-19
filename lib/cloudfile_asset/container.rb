@@ -1,5 +1,5 @@
-module Container
-  class << self
+module CloudfileAsset
+  class Container
     def config
       @config ||= YAML.load_file("#{RAILS_ROOT}/config/cloud_files.yml")['production'].symbolize_keys
     end
@@ -7,31 +7,28 @@ module Container
     def container
       @container ||=  CloudFiles::Connection.new(config[:username], config[:api_key]).container(config[:assets_container])
     end
-  
 
-  
-
-  
-    def upload_file(container, filename)
+    def upload_file(filename)
+      object = @container.create_object(CloudfileAsset::Local.make_relative(filename), false)
+      object.load_from_filename(filename)
+    end
     
+    def delete_file(filename)
+      @container.delete_object(filename)
     end
   
-    def get_deleted(container=nil)
-      container ||= self.get_container
-      local = self.get_local_public_files.collect{|filename| make_relative(filename)}
-      remote = container.objects
+    def deleted_files
+      local = CloudfileAsset::Local.public_files.collect{|filename| CloudfileAsset::Local.make_relative(filename)}
+      remote = self.container.objects
     
-      diff = remote - local
-      puts diff
+      deleted_files = remote - local
     end
   
-    def get_new(container=nil)
-      container ||= self.get_container
-      local = self.get_local_public_files.collect{|filename| make_relative(filename)}
-      remote = container.objects
+    def new_files
+      local = CloudfileAsset::Local.public_files.collect{|filename| CloudfileAsset::Local.make_relative(filename)}
+      remote = self.container.objects
     
-      diff = local - remote
-      puts diff
+      new_files = local - remote
     end
   end
 end

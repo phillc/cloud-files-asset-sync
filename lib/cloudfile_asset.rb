@@ -1,7 +1,7 @@
 require 'cloudfiles'
 require 'yaml'
 require 'cloudfile_asset/sync'
-require 'cloudfile_asset/local_file'
+require 'cloudfile_asset/local'
 require 'cloudfile_asset/container'
 
 module CloudfileAsset
