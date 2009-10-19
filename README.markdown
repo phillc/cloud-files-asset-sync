@@ -8,6 +8,22 @@ Dependencies
 Requires rackspace cloudfiles gem
 [http://github.com/rackspace/ruby-cloudfiles/tree](http://github.com/rackspace/ruby-cloudfiles/tree)
 
+For the present, requires this patch to be ran on the gem
+        diff --git a/lib/cloudfiles/container.rb b/lib/cloudfiles/container.rb
+        index 650658b..e3827e1 100644
+        --- a/lib/cloudfiles/container.rb
+        +++ b/lib/cloudfiles/container.rb
+        @@ -167,7 +167,7 @@ module CloudFiles
+               doc = REXML::Document.new(response.body)
+               detailhash = {}
+               doc.elements.each("container/object") { |o|
+        -        detailhash[o.elements["name"].text] = { :bytes => o.elements["bytes"].text, :hash => o.elements["hash"].text, :content_type => o.elements["content_type"].text, :last_modified => Time.parse(o.elements["last_modified"].text) }
+        +        detailhash[o.elements["name"].text] = { :bytes => o.elements["bytes"].text, :hash => o.elements["hash"].text, :content_type => o.elements["content_type"].text, :last_modified => DateTime.parse(o.elements["last_modified"].text) }
+               }
+               doc = nil
+               return detailhash
+
+
 Usage:
 ==================
 In your RAILS_ROOT/config folder, create a cloud_files.yml .
@@ -32,6 +48,7 @@ TODO:
 ================
 - Capistrano Recipie
 - Delete files that no longer exist
+- Gem Time vs DateTime work around without patch
 
 
 Copyright (c) 2009 [phillc](http://kapsh.com), released under the MIT license
