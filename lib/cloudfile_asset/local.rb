@@ -13,6 +13,8 @@ module CloudfileAsset
         end
         return files
       end
+      
+      # TODO: Is this the same as Action Pack -> ActionView::Helpers::AssetTagHelper private methods?
       def make_relative(filename)
         filename.split(CloudfileAsset::LOCAL_PUBLIC_PATH).last
       end

@@ -28,6 +28,7 @@ module CloudfileAsset
         puts "Done uploading" if loud
         
         deleted_files.each do |file|
+          puts "deleting file - #{file}" if loud
           container.delete_file(file)
         end
         puts "Done cleaning up" if loud

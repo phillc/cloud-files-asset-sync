@@ -12,6 +12,7 @@ module CloudfileAsset
       @container ||=  CloudFiles::Connection.new(config[:username], config[:api_key]).container(config[:assets_container])
     end
     
+    # TODO: Is this the same as Action Pack -> ActionView::Helpers::AssetTagHelper.asset_file_path and collect_asset_files
     def local_files
       @local_files ||= CloudfileAsset::Local.public_files.collect{|filename| CloudfileAsset::Local.make_relative(filename)}
     end
